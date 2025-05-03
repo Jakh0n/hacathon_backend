@@ -8,22 +8,16 @@ const setupTenantRoutes = require('./routes/tenant-routes')
 const app = express()
 const httpServer = http.createServer(app)
 
-// Socket.IO sozlamalari
-const io = new Server(httpServer, {
-	cors: {
-		origin: 'https://hacathon-frontend-neon.vercel.app',
-		methods: ['GET', 'POST'],
-		credentials: true,
-	},
-})
+// Use environment variable for CORS origin
+const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3000'
+const io = new Server(httpServer, { cors: { origin: allowedOrigin } })
 
-// CORS sozlamalari
+// Enable CORS for all routes
 app.use(
 	cors({
-		origin: 'https://hacathon-frontend-neon.vercel.app',
-		methods: ['GET', 'POST', 'OPTIONS'],
+		origin: allowedOrigin,
+		methods: ['GET', 'POST'],
 		allowedHeaders: ['Content-Type'],
-		credentials: true,
 	})
 )
 
