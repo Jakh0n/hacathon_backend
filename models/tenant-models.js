@@ -1,6 +1,6 @@
 const tenants = [
 	{
-		id: 'Tenant 1',
+		id: 'Tenant1',
 		name: 'Tenant 1',
 		domain: 'tenant1.example.com',
 		config: {
@@ -10,7 +10,7 @@ const tenants = [
 		},
 	},
 	{
-		id: 'Tenant 2',
+		id: 'Tenant2',
 		name: 'Tenant 2',
 		domain: 'tenant2.example.com',
 		config: {
