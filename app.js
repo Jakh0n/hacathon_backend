@@ -8,15 +8,19 @@ const setupTenantRoutes = require('./routes/tenant-routes')
 const app = express()
 const httpServer = http.createServer(app)
 
-// Use environment variable for CORS origin
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3000'
-const io = new Server(httpServer, { cors: { origin: allowedOrigin } })
+// Socket.IO sozlamalari
+const io = new Server(httpServer, {
+	cors: {
+		origin: '*',
+		methods: ['GET', 'POST'],
+	},
+})
 
-// Enable CORS for all routes
+// CORS sozlamalari
 app.use(
 	cors({
-		origin: allowedOrigin,
-		methods: ['GET', 'POST'],
+		origin: '*',
+		methods: ['GET', 'POST', 'OPTIONS'],
 		allowedHeaders: ['Content-Type'],
 	})
 )
