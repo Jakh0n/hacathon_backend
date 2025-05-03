@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid')
+
 const tenants = [
 	{
 		id: uuidv4(),
@@ -21,4 +23,4 @@ const tenants = [
 	},
 ]
 
-export { tenants }
+module.exports = { tenants }
