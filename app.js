@@ -11,17 +11,19 @@ const httpServer = http.createServer(app)
 // Socket.IO sozlamalari
 const io = new Server(httpServer, {
 	cors: {
-		origin: '*',
+		origin: 'https://hacathon-frontend-neon.vercel.app',
 		methods: ['GET', 'POST'],
+		credentials: true,
 	},
 })
 
 // CORS sozlamalari
 app.use(
 	cors({
-		origin: '*',
+		origin: 'https://hacathon-frontend-neon.vercel.app',
 		methods: ['GET', 'POST', 'OPTIONS'],
 		allowedHeaders: ['Content-Type'],
+		credentials: true,
 	})
 )
 
