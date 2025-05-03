@@ -2,24 +2,22 @@ require('dotenv').config()
 const express = require('express')
 const http = require('http')
 const { Server } = require('socket.io')
-const cors = require('cors')
 const setupTenantRoutes = require('./routes/tenant-routes')
 
 const app = express()
 const httpServer = http.createServer(app)
 
-// Use environment variable for CORS origin
-const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3000'
-const io = new Server(httpServer, { cors: { origin: allowedOrigin } })
+// Socket.IO sozlamalari
+const io = new Server(httpServer)
 
-// Enable CORS for all routes
-app.use(
-	cors({
-		origin: allowedOrigin,
-		methods: ['GET', 'POST'],
-		allowedHeaders: ['Content-Type'],
+// Asosiy yo'l
+app.get('/', (req, res) => {
+	res.status(200).json({
+		status: 'ok',
+		message: 'Server is running',
+		api: '/api',
 	})
-)
+})
 
 app.use(express.json())
 app.use('/api', setupTenantRoutes(io))
